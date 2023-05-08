@@ -14,7 +14,7 @@ This is an open source software that can convert uploaded images or videos into 
 
 ## Usage
 
-### Docker（Recommend·）
+### Docker（Recommend）
 
 1. Clone the code repository to your local machine.
 
