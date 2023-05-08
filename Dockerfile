@@ -1,5 +1,5 @@
 FROM python:3.7-slim
-MAINTAINER suke119
+MAINTAINER jessdy
 
 ENV TZ=Asia/Shanghai
 ENV APP_HOME /app
