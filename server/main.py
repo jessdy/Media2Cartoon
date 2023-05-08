@@ -40,6 +40,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.mount("/front", StaticFiles(directory="dist",html=True), name="static")
+app.mount("/uploader", StaticFiles(directory="uploader",html=True), name="static")
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 UPLOAD_FOLDER_VIDEOS = './uploader'
@@ -47,16 +48,19 @@ UPLOAD_FOLDER_VIDEOS = './uploader'
 
 
 
-def allowed_file(filename):
+def allowed_file(filename, allow):
     return '.' in filename and \
-        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+        filename.rsplit('.', 1)[1].lower() in allow
 
 
 @app.post("/image-upload/")
 async def image_upload(file: UploadFile = File(...)):
-    if file and allowed_file(file.filename):
+    if file and allowed_file(file.filename, ALLOWED_EXTENSIONS):
         logger.info("文件信息 " +file.filename)
         return {"status":200,"base64": await actiontarnsfer(file)}
+    elif file and allowed_file(file.filename, {'mp4'}):
+        logger.info("文件信息 " +file.filename)
+        return {"status":200,"url": await videoactiontransfer(file)}
     else:
         return {"status":400,"error": "非法文件"}
     
@@ -98,7 +102,18 @@ async def actiontarnsfer(image_file):
 
 
 
-def videoactiontransfer(original_video_path):
+async def videoactiontransfer(file):
+    fn = file.filename
+    save_path = f'./uploader/'
+    if not os.path.exists(save_path):
+        os.mkdir(save_path)
+    original_video_path = os.path.join(save_path, fn)
+    f = open(original_video_path, 'wb')
+    data = await file.read()
+    f.write(data)
+    f.close()
+
+    
     ## Fetch Metadata and set frame rate
     file_metadata = skvideo.io.ffprobe(original_video_path)
     original_frame_rate = None
@@ -160,7 +175,7 @@ def videoactiontransfer(original_video_path):
         os.system("del {} {} {} {}".format(original_video_path, modified_video_path, audio_file_path, cartoon_video_path))
     else:
         os.system("rm {} {} {} {}".format(original_video_path, modified_video_path, audio_file_path, cartoon_video_path))
-
+    return final_cartoon_video_path
 
 
 if __name__ == '__main__':
