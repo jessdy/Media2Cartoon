@@ -45,7 +45,7 @@
               drag
               :show-file-list="false"
               action="nono"
-              accept="image/jpeg,image/png,image/jpg"
+              accept="image/jpeg,image/png,image/jpg,video/mp4"
               :http-request="uploadImage"
               list-type="picture"
               multiple>
@@ -56,9 +56,13 @@
     <el-row>
             <div class="images" v-if="trResult.length > 0">
                 <div v-for="(item,index) in trResult" :key="index">
-                    <div class="inner-container">
+                    <div class="inner-container" v-if="item.url.endsWith('mp4')">
+                        <video controls :src="item.url" width="200" style="width:200px"></video>
+                        <el-button size="mini" type="info" @click="downLoadFile(item.url)">下载</el-button>
+                    </div>
+                    <div class="inner-container" v-else>
                         <el-image style="height: 200px;width: 200px;margin: 2px;"  :src="item.url" :preview-src-list="preViewList"></el-image>
-                    <el-button size="mini" type="info" @click="downLoadFile(item.url)">下载</el-button>
+                        <el-button size="mini" type="info" @click="downLoadFile(item.url)">下载</el-button>
                     </div>
                 </div>
             </div>
@@ -147,11 +151,19 @@ var app = new Vue({
                 success: function (res) {
                     that.loading = false
                     if(res.status === 200){
-                        that.$message.success("转换成功")
-                        let imageUrl = 'data:image/png;base64,'+res['base64']
-                        let e = {url:imageUrl}
-                        that.trResult.push(e)
-                        that.preViewList.push(imageUrl)
+                        if (res['base64']) {
+                            that.$message.success("转换成功")
+                            let imageUrl = 'data:image/png;base64,'+res['base64']
+                            let e = {url:imageUrl}
+                            that.trResult.push(e)
+                            that.preViewList.push(imageUrl)
+                        } else {
+                            let videoUrl = res['url'].substr(1)
+                            let e = {url:videoUrl}
+                            that.trResult.push(e)
+                            that.preViewList.push(videoUrl)
+                        }
+                        
                     }else{
                         that.$message.error("转换异常，请重试")
                     }
