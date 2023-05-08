@@ -1,28 +1,55 @@
-# cartoon-media
+# Media2Cartoon
 
-> image or video to cartoon
+[**English**](./README.md) | [**中文简体**](./README_zh_CN.md)
 
-![example](example.png)
+This is an open source software that can convert uploaded images or videos into cartoon style.
 
-> base repo [cartoonize](https://github.com/experience-ml/cartoonize)
+![screenshot](screenshot.png)
 
-###  get starter with docker 
+## Features
 
-> build image
+- Supports uploading of image and video formats
+- Supports resizing video.
+- Supports trimming video length.
 
-```sh
-docker build -t cartoon-media:1.0 .
+## Usage
+
+### Docker（Recommend·）
+
+1. Clone the code repository to your local machine.
+
+```
+git clone https://github.com/jessdy/Media2Cartoon.git
 ```
 
-> start container
+
+2. Container building
 
 ```sh
-docker run -d --name cartoon-1.0 -p 18080:18080 cartoon-media:1.0
+docker build -t Media2Cartoon:1.0 .
 ```
 
-> visit: http://localhost:18080/front/
 
-###  get start with local
+3. Start the container
+
+```sh
+docker run -d --name cartoon-1.0 -p 18080:18080 Media2Cartoon:1.0
+```
+
+
+4. Visit
+
+- URL：[http://localhost:18080/front/]
+
+###  Local
+
+1. Clone the code repository to your local machine.
+
+```
+git clone https://github.com/jessdy/Media2Cartoon.git
+```
+
+2. Install dependencies
 
 ```cmd
 cd server
@@ -32,38 +59,7 @@ pip install -r requirements.txt -i https://pypi.douban.com/simple
 uvicorn main:app --reload --port 18080 --host 0.0.0.0
 
 ```
-> visit: http://localhost:18080/front/
 
+3. Visit
 
-## 中文
-
-### 容器构建和启动
-
-
-> 下载源码构建容器
-
-```sh
-docker build -t cartoon-media:1.0 .
-```
-
-> 启动容器
-
-```sh
-docker run -d --name cartoon-1.0 -p 18080:18080 cartoon-media:1.0
-```
-
-> 启动后访问: http://localhost:18080/front/
-
-###  本地启动
-
-> 注意依赖安装
-
-```cmd
-cd server
-pip uninstall -y protobuf
-pip install protobuf==3.19.0 -i https://pypi.douban.com/simple      
-pip install -r requirements.txt -i https://pypi.douban.com/simple 
-uvicorn main:app --reload --port 18080 --host 0.0.0.0
-
-```
-> 访问: http://localhost:18080/front/
+- URL：[http://localhost:18080/front/]
