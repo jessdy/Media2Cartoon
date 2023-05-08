@@ -1,5 +1,12 @@
 # Media2Cartoon
 
+![Made in China](https://img.shields.io/badge/made_in-China-red.svg)
+![Created by Jessdy](https://img.shields.io/badge/created_by-Jessdy-blue.svg)
+![GitHub](https://img.shields.io/github/license/jessdy/Media2Cartoon)
+[![Release](https://img.shields.io/github/release/jessdy/Media2Cartoon.svg)](https://github.com/jessdy/Media2Cartoon/releases)
+[![Downloads](https://img.shields.io/github/downloads/jessdy/Media2Cartoon/total)](https://github.com/jessdy/Media2Cartoon/releases)
+![Bitbucket open issues](https://img.shields.io/bitbucket/issues/jessdy/Media2Cartoon)
+
 [**English**](./README.md) | [**中文简体**](./README_CN.md)
 
 This is an open source software that can convert uploaded images or videos into cartoon style.
