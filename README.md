@@ -1,6 +1,6 @@
 # Media2Cartoon
 
-[**English**](./README.md) | [**中文简体**](./README_zh_CN.md)
+[**English**](./README.md) | [**中文简体**](./README_CN.md)
 
 This is an open source software that can convert uploaded images or videos into cartoon style.
 
