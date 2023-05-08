@@ -1,5 +1,12 @@
 # Media2Cartoon
 
+![Made in China](https://img.shields.io/badge/中国-制造-red.svg)
+![Created by Jessdy](https://img.shields.io/badge/作者-Jessdy-blue.svg)
+![GitHub](https://img.shields.io/github/license/jessdy/Media2Cartoon)
+[![Release](https://img.shields.io/github/release/jessdy/Media2Cartoon.svg)](https://github.com/jessdy/Media2Cartoon/releases)
+[![Downloads](https://img.shields.io/github/downloads/jessdy/Media2Cartoon/total)](https://github.com/jessdy/Media2Cartoon/releases)
+![Bitbucket open issues](https://img.shields.io/bitbucket/issues/jessdy/Media2Cartoon)
+
 [**English**](./README.md) | [**中文简体**](./README_CN.md)
 
 可以将上传的图片或视频转换成卡通风格。
